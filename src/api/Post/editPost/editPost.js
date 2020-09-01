@@ -1,4 +1,7 @@
 import {prisma} from "../../../../generated/prisma-client"
+
+const DELETE = "DELETE";
+const EDIT = "EDIT";
 export default{
     Mutation:{
         editPost: async (_,args,{request,isAuthenticated})=>{
@@ -7,7 +10,7 @@ export default{
             const {user} = request;
             const post = await prisma.$exists.post({id,user:{id: user.id}});
             if(post){
-                if(action === "EDIT"){
+                if(action === EDIT){
                     return prisma.updatePost(
                         {
                             data:{caption,location},
@@ -15,7 +18,7 @@ export default{
     
                         }
                     );
-                }else if (action ==="DELETE"){
+                }else if (action ===DELETE){
                     return prisma.deletePost({id});
                 }
                 

@@ -38,6 +38,7 @@ export default{             //개인이 좋아요를 누르거나 지우는 기�
                         }
                     });
                 }
+                return true;
             }catch{
                 return false;
             }
